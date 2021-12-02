@@ -4,6 +4,8 @@ import morgan from "morgan";
 import connectDb from "./config/db.js";
 import colors from "colors";
 
+import blogsRouters from "./routes/blogsRoutes.js";
+
 dotenv.config();
 
 connectDb();
@@ -15,6 +17,8 @@ if (process.env.NODE_MODE === "development") {
 }
 
 app.use(express.json());
+
+app.use("/api/blogs", blogsRouters);
 
 const port = process.env.PORT || 5000;
 
