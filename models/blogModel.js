@@ -1,16 +1,33 @@
 import mongoose from "mongoose";
 
+import slugify from "slugify";
+
+import createDomPurify from "dompurify";
+import { JSDOM } from "jsdom";
+import { marked } from "marked";
+const dompurify = createDomPurify(new JSDOM().window);
+
 const blogSchema = mongoose.Schema(
   {
     title: { type: String, required: true },
+    description: { type: String, required: true },
     body: { type: String, required: true },
     photo: { type: String, required: true },
+    slug: { type: String, unique: true },
   },
   {
     timestamps: true,
   }
 );
 
-const Blog = mongoose.model("Blog", blogSchema);
+blogSchema.pre("validate", function (next) {
+  this.slug = slugify(this.title, { lower: true, strict: true });
 
-export default Blog;
+  if (this.body) {
+    this.body = dompurify.sanitize(marked(this.body));
+  }
+
+  next();
+});
+
+export default mongoose.model("Blog", blogSchema);
