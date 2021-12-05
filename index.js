@@ -5,6 +5,7 @@ import connectDb from "./config/db.js";
 import colors from "colors";
 
 import blogsRouters from "./routes/blogsRoutes.js";
+import usersRouters from "./routes/usersRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ if (process.env.NODE_MODE === "development") {
 app.use(express.json());
 
 app.use("/api/blogs", blogsRouters);
+
+app.use("/api/users", usersRouters);
 
 const port = process.env.PORT || 5000;
 
