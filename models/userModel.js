@@ -24,6 +24,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       enum: ["user", "admin", "publisher"],
+      default: "user",
     },
     bookmarked: {
       type: mongoose.Schema.ObjectId,

@@ -41,12 +41,11 @@ export const userLogin = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    update users info
-// @route    POST /api/users/updateuser
+// @route    POST /api/users/profile
 // @access    private
 export const updateUser = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body;
-  const user = await User.findOne({ email });
-
+  const { name, password } = req.body;
+  const user = await User.findById(req.user._id);
   if (!user) {
     res.status(404);
     throw new Error("User not found");
@@ -63,5 +62,31 @@ export const updateUser = asyncHandler(async (req, res, next) => {
     email: user.email,
     role: user.role,
     token: generateToken(user._id),
+  });
+});
+
+// @desc    update users info
+// @route    POST /api/users
+// @access    private
+export const registerUser = asyncHandler(async (req, res, next) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    res.status(400);
+    throw new Error("Please provide an email and password");
+  }
+
+  const newUser = await User.create({
+    name,
+    email,
+    password,
+  });
+
+  res.status(201).json({
+    _id: newUser._id,
+    name: newUser.name,
+    email: newUser.email,
+    role: newUser.role,
+    token: generateToken(newUser._id),
   });
 });
