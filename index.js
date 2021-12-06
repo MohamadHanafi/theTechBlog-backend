@@ -7,6 +7,9 @@ import colors from "colors";
 import blogsRouters from "./routes/blogsRoutes.js";
 import usersRouters from "./routes/usersRoutes.js";
 
+// middleware
+import { notFound, errorHandler } from "./middleware/errorsMiddleware.js";
+
 dotenv.config();
 
 connectDb();
@@ -22,6 +25,9 @@ app.use(express.json());
 app.use("/api/blogs", blogsRouters);
 
 app.use("/api/users", usersRouters);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 
