@@ -26,9 +26,9 @@ const userSchema = mongoose.Schema(
       enum: ["user", "admin", "publisher"],
       default: "user",
     },
-    bookmarked: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Blog",
+    bookmarks: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Book",
     },
   },
   {

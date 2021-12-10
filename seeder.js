@@ -18,8 +18,16 @@ const importData = async () => {
     await Blog.deleteMany();
     await User.deleteMany();
 
-    const sampleBlogs = await Blog.insertMany(blogs);
     const sampleUsers = await User.insertMany(users);
+
+    const admin = users.filter((user) => user.role === "admin")[0];
+    const adminId = admin._id;
+
+    const updatedBlogs = blogs.map((blog) => {
+      return { ...blog, user: adminId };
+    });
+
+    const sampleBlogs = await Blog.insertMany(updatedBlogs);
 
     console.log("Data Imported!".green.inverse);
     process.exit();

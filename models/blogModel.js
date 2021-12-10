@@ -9,10 +9,15 @@ const dompurify = createDomPurify(new JSDOM().window);
 
 const blogSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     title: { type: String, required: true },
     description: { type: String, required: true },
     body: { type: String, required: true },
-    photo: { type: String, required: true },
+    image: { type: String, required: true },
     slug: { type: String, unique: true },
   },
   {

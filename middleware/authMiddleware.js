@@ -29,4 +29,14 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
+export const authorize =
+  (...roles) =>
+  (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      res.status(403);
+      throw new Error(`user role ${req.user.role} is not authorized`);
+    }
+    next();
+  };
+
 export default protect;

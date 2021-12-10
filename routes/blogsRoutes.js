@@ -1,10 +1,17 @@
 import express from "express";
-import { getBlogs, getBlog } from "../controllers/blogsControllers.js";
+import {
+  getBlogs,
+  getBlog,
+  createBlog,
+} from "../controllers/blogsControllers.js";
+import protect, { authorize } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", getBlogs);
+router
+  .get("/", getBlogs)
+  .post("/", protect, authorize("admin", "publisher"), createBlog);
 
-router.route("/:id").get(getBlog);
+router.route("/:slug").get(getBlog);
 
 export default router;

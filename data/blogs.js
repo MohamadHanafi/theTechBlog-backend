@@ -5,7 +5,7 @@ export const blogs = [
     body: "<p>Officia voluptate quis duis laboris veniam eiusmod id <strong>proident</strong> incididunt do aliquip.</p> Ut ut nulla nostrud anim ea. Aliqua culpa dolor nostrud nisi magna duis laborum. Duis minim sunt eu cupidatat officia consectetur fugiat officia non dolor pariatur sint voluptate.",
     description:
       "Lorem laborum irure sint ea deserunt Lorem ex ipsum dolor ipsum elit.",
-    photo: "./BlogImages/blog1.jpg",
+    image: "./BlogImages/blog1.jpg",
   },
   {
     createdAt: "September 3, 2020",
@@ -13,7 +13,7 @@ export const blogs = [
     body: "<p>Officia voluptate quis duis laboris veniam eiusmod id <strong>proident</strong> incididunt do aliquip.</p> Ut ut nulla nostrud anim ea. Aliqua culpa dolor nostrud nisi magna duis laborum. Duis minim sunt eu cupidatat officia consectetur fugiat officia non dolor pariatur sint voluptate.",
     description:
       "Lorem laborum irure sint ea deserunt Lorem ex ipsum dolor ipsum elit.",
-    photo: "./BlogImages/blog1.jpg",
+    image: "./BlogImages/blog1.jpg",
   },
   {
     createdAt: "August 14, 2021",
@@ -21,7 +21,7 @@ export const blogs = [
     body: "<p>Officia voluptate quis duis laboris veniam eiusmod id <strong>proident</strong> incididunt do aliquip.</p> Ut ut nulla nostrud anim ea. Aliqua culpa dolor nostrud nisi magna duis laborum. Duis minim sunt eu cupidatat officia consectetur fugiat officia non dolor pariatur sint voluptate.",
     description:
       "Lorem laborum irure sint ea deserunt Lorem ex ipsum dolor ipsum elit.",
-    photo: "./BlogImages/blog1.jpg",
+    image: "./BlogImages/blog1.jpg",
   },
   {
     createdAt: "June 15, 2021",
@@ -29,6 +29,6 @@ export const blogs = [
     body: "<p>Officia voluptate quis duis laboris veniam eiusmod id <strong>proident</strong> incididunt do aliquip.</p> Ut ut nulla nostrud anim ea. Aliqua culpa dolor nostrud nisi magna duis laborum. Duis minim sunt eu cupidatat officia consectetur fugiat officia non dolor pariatur sint voluptate.",
     description:
       "Lorem laborum irure sint ea deserunt Lorem ex ipsum dolor ipsum elit.",
-    photo: "./BlogImages/blog1.jpg",
+    image: "./BlogImages/blog1.jpg",
   },
 ];
