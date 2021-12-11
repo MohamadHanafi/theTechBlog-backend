@@ -165,3 +165,35 @@ export const addBookmark = asyncHandler(async (req, res, next) => {
 
   res.status(200).json(blog);
 });
+
+// @desc    remove book mark
+// @route    delete /api/users/:user_id/:blog_id
+// @access    private
+export const removeBookmark = asyncHandler(async (req, res, next) => {
+  const { user_id } = req.params;
+  const { blog_id } = req.params;
+
+  const user = await User.findById(user_id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  const blog = await Blog.findById(blog_id);
+  if (!blog) {
+    res.status(404);
+    throw new Error("Blog not found");
+  }
+
+  if (user.bookmarks.includes(blog_id)) {
+    const index = user.bookmarks.indexOf(blog_id);
+    user.bookmarks.splice(index, 1);
+
+    await user.save();
+
+    res.status(200).json(blog);
+  } else {
+    res.status(400);
+    throw new Error("Blog is not bookmarked");
+  }
+});

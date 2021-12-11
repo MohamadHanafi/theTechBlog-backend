@@ -4,6 +4,7 @@ import {
   addBookmark,
   deleteUser,
   getUsersList,
+  removeBookmark,
   updateUserRole,
 } from "../controllers/userControllers.js";
 import {
@@ -31,5 +32,8 @@ router
 
 router.route("/bookmarks").get(protect, getBookmarks);
 
-router.route("/:user_id/:blog_id").put(protect, addBookmark);
+router
+  .route("/:user_id/:blog_id")
+  .put(protect, addBookmark)
+  .delete(protect, removeBookmark);
 export default router;
