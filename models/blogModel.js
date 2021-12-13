@@ -35,4 +35,11 @@ blogSchema.pre("validate", function (next) {
   next();
 });
 
+blogSchema.pre("findOneAndUpdate", function (next) {
+  if (this._update.body) {
+    this._update.body = dompurify.sanitize(marked(this._update.body));
+  }
+
+  next();
+});
 export default mongoose.model("Blog", blogSchema);
