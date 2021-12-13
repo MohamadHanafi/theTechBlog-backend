@@ -19,7 +19,7 @@ connectDb();
 
 const app = express();
 
-if (process.env.NODE_MODE === "development") {
+if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
@@ -33,6 +33,18 @@ app.use("/api/blogs", blogsRouters);
 app.use("/api/users", usersRouters);
 
 app.use("/api/upload", uploadRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/the-tech-blog/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../the-tech-blog/build/index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("api running");
+  });
+}
 
 app.use(notFound);
 app.use(errorHandler);
