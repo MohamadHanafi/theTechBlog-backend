@@ -35,10 +35,12 @@ app.use("/api/users", usersRouters);
 app.use("/api/upload", uploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/the-tech-blog/build")));
+  app.use(express.static(path.join(__dirname, "../the-tech-blog/build")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../the-tech-blog/build/index.html"));
+    res.sendFile(
+      path.resolve(__dirname, "../the-tech-blog", "build", "index.html")
+    );
   });
 } else {
   app.get("/", (req, res) => {
